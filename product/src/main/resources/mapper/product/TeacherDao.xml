@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itxs.product.dao.TeacherDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.itxs.product.entity.TeacherEntity" id="teacherMap">
+        <result property="id" column="id"/>
+        <result property="teacherName" column="teacher_name"/>
+    </resultMap>
+
+    <resultMap type="com.itxs.product.entity.ClassEntity" id="classMap">
+        <result property="id" column="id"/>
+        <result property="className" column="class_name"/>
+    </resultMap>
+
+    <sql id="columns">
+    c.id,c.class_name
+    </sql>
+
+    <select id="getAllClass" resultMap="classMap">
+        select <include refid="columns"/>
+from lp_teacher as t left join lp_class_teacher as ct ON ct.teacher_id=t.id left join lp_class as c on c.id
+=ct.class_id where t.teacher_name=#{teacherName};
+    </select>
+
+
+</mapper>
