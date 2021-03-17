@@ -17,6 +17,7 @@ import org.springframework.util.ObjectUtils;
 
 @Service("classTeacherService")
 public class ClassTeacherServiceImpl extends ServiceImpl<ClassTeacherDao, ClassTeacherEntity> implements ClassTeacherService {
+
     @Override
     public int  saveInfo(ClassTeacherEntity classTeacher)  {
         //Todo 首先我们判断classTeacher中的cid和status是否已经存在

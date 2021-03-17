@@ -15,6 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(value = "service-lpterm", fallback= ClassFeginFallBack.class)
 public interface ClassFeign {
 
-    @GetMapping(value = "product/class//get-teachers/{classId}")
+    @GetMapping(value = "product/class/get-teachers/{classId}")
     R getClassAllTeacher(@PathVariable("classId") String classId);
 }

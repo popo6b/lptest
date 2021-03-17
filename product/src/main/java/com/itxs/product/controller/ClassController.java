@@ -14,6 +14,7 @@ import com.itxs.product.service.ClassService;
 import com.itxs.common.utils.PageUtils;
 import com.itxs.common.utils.R;
 
+import javax.annotation.Resource;
 
 
 /**
@@ -26,7 +27,8 @@ import com.itxs.common.utils.R;
 @RestController
 @RequestMapping("product/class")
 public class ClassController {
-    @Autowired
+
+    @Resource
     private ClassService classService;
 
 //    /**
@@ -45,8 +47,8 @@ public class ClassController {
      */
     @GetMapping("/info/{id}")
     public R info(@PathVariable("id") String id){
-		ClassEntity classroom = classService.getById(id);
 
+		ClassEntity classroom = classService.getById(id);
         return R.ok().put("classroom", classroom);
     }
 
@@ -55,8 +57,8 @@ public class ClassController {
      */
     @PostMapping("/save")
     public R save(@RequestBody ClassEntity classroom){
-		classService.save(classroom);
 
+		classService.save(classroom);
         return R.ok();
     }
 
@@ -65,6 +67,7 @@ public class ClassController {
      */
     @PutMapping("/update")
     public R update(@RequestBody ClassEntity classroom){
+
 		classService.updateById(classroom);
         return R.ok();
     }
@@ -74,8 +77,8 @@ public class ClassController {
      */
     @DeleteMapping("/delete")
     public R delete(@RequestBody Integer[] ids){
-		classService.removeByIds(Arrays.asList(ids));
 
+		classService.removeByIds(Arrays.asList(ids));
         return R.ok();
     }
 
@@ -86,6 +89,7 @@ public class ClassController {
      */
     @DeleteMapping("/deleteInfo/{id}")
     public R deleteInfo(@PathVariable String id){
+
         if (!ObjectUtils.isEmpty(id)){
             classService.deleteClassInfo(id);
             return R.ok();
@@ -101,6 +105,7 @@ public class ClassController {
      */
     @GetMapping("/get-teachers/{classId}")
     public R getClassAllTeacher(@PathVariable String classId){
+
         if(!ObjectUtils.isEmpty(classId)){
             List<TeacherEntity> allTeacher = classService.getAllTeacher(classId);
             return R.ok().put("teachers",allTeacher);

@@ -30,6 +30,8 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherDao, TeacherEntity> i
     @Transactional
     @Override
     public void removeInfo(String id) {
+
+
         if(!ObjectUtils.isEmpty(id)) {
             classTeacherService.remove(new QueryWrapper<ClassTeacherEntity>().eq("teacher_id", id));
             baseMapper.deleteById(id);
@@ -43,6 +45,7 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherDao, TeacherEntity> i
      */
     @Override
     public List<ClassEntity> getAllTeacher(String teacherName) {
+
         if (!ObjectUtils.isEmpty(teacherName)) {
             return baseMapper.getAllClass(teacherName);
         }else{

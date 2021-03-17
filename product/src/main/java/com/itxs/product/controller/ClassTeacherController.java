@@ -12,6 +12,7 @@ import com.itxs.product.entity.ClassTeacherEntity;
 import com.itxs.product.service.ClassTeacherService;
 import com.itxs.common.utils.R;
 
+import javax.annotation.Resource;
 
 
 /**
@@ -24,7 +25,8 @@ import com.itxs.common.utils.R;
 @RestController
 @RequestMapping("product/classteacher")
 public class ClassTeacherController {
-    @Autowired
+
+    @Resource
     private ClassTeacherService classTeacherService;
 
     /**
@@ -43,8 +45,8 @@ public class ClassTeacherController {
      */
     @RequestMapping("/info/{classId}")
     public R info(@PathVariable("classId") Integer classId){
-		ClassTeacherEntity classTeacher = classTeacherService.getById(classId);
 
+		ClassTeacherEntity classTeacher = classTeacherService.getById(classId);
         return R.ok().put("classTeacher", classTeacher);
     }
 
@@ -67,8 +69,8 @@ public class ClassTeacherController {
      */
     @RequestMapping("/update")
     public R update(@RequestBody ClassTeacherEntity classTeacher){
-		classTeacherService.updateById(classTeacher);
 
+		classTeacherService.updateById(classTeacher);
         return R.ok();
     }
 
@@ -77,8 +79,8 @@ public class ClassTeacherController {
      */
     @RequestMapping("/delete")
     public R delete(@RequestBody Integer[] classIds){
-		classTeacherService.removeByIds(Arrays.asList(classIds));
 
+		classTeacherService.removeByIds(Arrays.asList(classIds));
         return R.ok();
     }
 

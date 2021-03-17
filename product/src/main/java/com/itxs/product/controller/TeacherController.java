@@ -16,6 +16,7 @@ import com.itxs.product.service.TeacherService;
 import com.itxs.common.utils.PageUtils;
 import com.itxs.common.utils.R;
 
+import javax.annotation.Resource;
 
 
 /**
@@ -28,7 +29,8 @@ import com.itxs.common.utils.R;
 @RestController
 @RequestMapping("product/teacher")
 public class TeacherController {
-    @Autowired
+
+    @Resource
     private TeacherService teacherService;
 
 //    /**
@@ -47,8 +49,8 @@ public class TeacherController {
      */
     @GetMapping("/info/{id}")
     public R info(@PathVariable("id") Integer id){
-		TeacherEntity teacher = teacherService.getById(id);
 
+		TeacherEntity teacher = teacherService.getById(id);
         return R.ok().put("teacher", teacher);
     }
 
@@ -57,8 +59,8 @@ public class TeacherController {
      */
     @PostMapping("/save")
     public R save(@RequestBody TeacherEntity teacher){
-		teacherService.save(teacher);
 
+		teacherService.save(teacher);
         return R.ok();
     }
 
@@ -67,8 +69,8 @@ public class TeacherController {
      */
     @PutMapping("/update")
     public R update(@RequestBody TeacherEntity teacher){
-		teacherService.updateById(teacher);
 
+		teacherService.updateById(teacher);
         return R.ok();
     }
 
@@ -77,8 +79,8 @@ public class TeacherController {
      */
     @DeleteMapping("/delete")
     public R delete(@RequestBody Integer[] ids){
-		teacherService.removeByIds(Arrays.asList(ids));
 
+		teacherService.removeByIds(Arrays.asList(ids));
         return R.ok();
     }
 
@@ -89,6 +91,7 @@ public class TeacherController {
      */
     @DeleteMapping("/delete-info/{id}")
     public R deleteInfo(@PathVariable String id){
+
         if (!ObjectUtils.isEmpty(id)){
             teacherService.removeInfo(id);
             return R.ok();
@@ -105,6 +108,7 @@ public class TeacherController {
     @GetMapping("/get-allClass")
     @SentinelResource(value = "get-allClass", blockHandler = "deal_testhotkey")
     public R GetMapping(@RequestParam String teacherName){
+
         if (!ObjectUtils.isEmpty(teacherName)){
             List<ClassEntity> allClass = teacherService.getAllTeacher(teacherName);
             return R.ok().put("allClass",allClass);
@@ -114,6 +118,7 @@ public class TeacherController {
     }
 
     public R deal_testhotkey(String teacherName, BlockException e){
+
         return R.error("服务限流");
     }
 
