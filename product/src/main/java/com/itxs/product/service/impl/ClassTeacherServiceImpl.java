@@ -20,6 +20,7 @@ public class ClassTeacherServiceImpl extends ServiceImpl<ClassTeacherDao, ClassT
 
     @Override
     public int  saveInfo(ClassTeacherEntity classTeacher)  {
+
         //Todo 首先我们判断classTeacher中的cid和status是否已经存在
         QueryWrapper<ClassTeacherEntity> queryWrapper=new QueryWrapper<>();
         if (classTeacher.getClassId()!=null){
